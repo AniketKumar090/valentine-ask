@@ -2,21 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" href="style.css" />
     <title>Valentine Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
 
-    <!-- Preload fonts to avoid layout shift -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Prevent zoom on input (not needed here, but safe) -->
-    <meta name="format-detection" content="telephone=no" />
-
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Envelope Screen -->
@@ -29,10 +24,12 @@
     <div id="letter-container">
       <div class="letter-window">
         <h1 id="letter-title">Will you be my Valentine?</h1>
-        <img src="cat_heart.gif" class="cat" id="letter-cat" alt="Cute cat with heart" />
-        
+
+        <img src="cat_heart.gif" class="cat" id="letter-cat" />
+
         <div class="buttons" id="letter-buttons">
           <img src="yes.png" class="btn yes-btn" alt="Yes" />
+
           <div class="no-wrapper">
             <img src="no.png" class="btn no-btn" alt="No" />
           </div>
@@ -43,7 +40,6 @@
         </p>
       </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>
