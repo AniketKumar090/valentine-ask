@@ -115,7 +115,7 @@ body {
   width: min(98vw, 1000px);
   min-width: 320px;           /* never smaller than 320px - keeps LOVE readable */
   min-height: 0;
-  aspect-ratio: 3 / 2;        /* match window.png proportions exactly */
+  aspect-ratio: 3 / 2;        /* match window.png proportions exactly - DESKTOP LANDSCAPE */
   
   /* Adjusted padding to perfectly frame the content inside window.png */
   padding: 16px 16px 20px;
@@ -149,23 +149,32 @@ body {
   margin: auto;
 }
 
+/* MOBILE PORTRAIT MODE - Taller aspect ratio for phones */
+@media (max-width: 768px) and (orientation: portrait) {
+  .letter-window {
+    aspect-ratio: 2 / 3;  /* Portrait orientation - TALLER for mobile */
+    width: 90vw;
+    max-width: 500px;
+  }
+}
+
 .letter-window.open {
   transform: scale(1);
   opacity: 1;
 }
 
 /* iPhone 13/14/15 specific adjustments (390px x 844px and 393px x 852px) */
-@media (max-width: 430px) and (min-height: 800px) {
+@media (max-width: 430px) and (min-height: 800px) and (orientation: portrait) {
   .letter-window {
-    width: 96vw;
+    width: 92vw;
     min-width: 300px;
-    aspect-ratio: 3 / 2;
-    padding-top: clamp(90px, 23vw, 110px);
-    padding-left: 18px;
-    padding-right: 18px;
-    padding-bottom: 16px;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    aspect-ratio: 2 / 3;  /* Portrait - TALLER */
+    padding-top: clamp(100px, 24vw, 130px);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
   }
 }
 
@@ -312,17 +321,18 @@ h1 {
 /* ===== DETAILED MEDIA QUERIES FOR ZOOMED WINDOW ===== */
 
 /* Extra small devices (≤400px) – maximum zoom to show LOVE details */
-@media (max-width: 400px) {
+@media (max-width: 400px) and (orientation: portrait) {
   #envelope {
     width: min(150px, 50vw);
   }
   
   .letter-window {
-    width: 98vw;
-    min-width: 260px;
-    padding-top: clamp(75px, 20vw, 95px);
-    padding-left: 12px;
-    padding-right: 12px;
+    width: 94vw;
+    min-width: 280px;
+    aspect-ratio: 2 / 3;  /* Portrait - TALLER */
+    padding-top: clamp(85px, 22vw, 110px);
+    padding-left: 16px;
+    padding-right: 16px;
   }
   
   h1 {
@@ -330,8 +340,8 @@ h1 {
   }
   
   .letter-window.final .cat {
-    width: min(120px, 35vw);
-    max-width: 130px;
+    width: min(140px, 38vw);
+    max-width: 150px;
   }
   
   .btn {
@@ -346,11 +356,12 @@ h1 {
 }
 
 /* Small phones (380px and below) – extra zoom */
-@media (max-width: 380px) {
+@media (max-width: 380px) and (orientation: portrait) {
   .letter-window {
-    padding-top: clamp(65px, 18vw, 80px);
-    padding-left: 10px;
-    padding-right: 10px;
+    aspect-ratio: 2 / 3;  /* Portrait - TALLER */
+    padding-top: clamp(75px, 20vw, 95px);
+    padding-left: 14px;
+    padding-right: 14px;
   }
   
   h1 {
@@ -358,7 +369,7 @@ h1 {
   }
   
   .cat {
-    width: min(180px, 42vw);
+    width: min(170px, 44vw);
   }
 }
 
