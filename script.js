@@ -138,7 +138,10 @@ function createChatBubble() {
     const bubble = document.createElement("div");
     bubble.className = "chat-bubble";
     bubble.textContent = BUBBLE_MESSAGES[Math.floor(Math.random() * BUBBLE_MESSAGES.length)];
-    bubble.style.left = Math.random() * 100 + "%";
+    // Keep bubbles on screen: left = center of bubble, range 28%–72% so they don't get cut off
+    const safeLeftMin = 28;
+    const safeLeftMax = 72;
+    bubble.style.left = (safeLeftMin + Math.random() * (safeLeftMax - safeLeftMin)) + "%";
     container.appendChild(bubble);
     setTimeout(() => bubble.remove(), 38000);
 }
