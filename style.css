@@ -1,263 +1,173 @@
-body {
-    margin: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("heart-bg.jpg");
-    background-size: cover;
-    background-position: center;
-    font-family: "Pixelify Sans", sans-serif;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
-
+/* Reset & Base */
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh; /* Better mobile support */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("heart-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Pixelify Sans", sans-serif;
+  overflow-x: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* Envelope Screen */
 #envelope-container {
-    text-align: center;
-    cursor: pointer;
-    padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+  max-width: 100%;
 }
 
 #envelope-container p {
-    font-size: clamp(18px, 5vw, 40px);
-    margin: 10px 0 0;
+  font-size: clamp(18px, 5vw, 40px);
+  margin: 12px 0 0;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+#envelope {
+  width: clamp(120px, 35vw, 220px);
+  max-width: 240px;
+  animation: pulse 1.8s infinite ease-in-out;
+  cursor: pointer;
 }
 
 @keyframes pulse {
-    0% {
-        transform:scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
-#envelope{
-    width: 200px;
-    animation: pulse 1.5s infinite;
-    cursor: pointer;
-}
-
+/* Letter Container */
 #letter-container {
-    display: none;
-    position: fixed;
-    inset: 0;
-    justify-content: center;
-    align-items: center;
-    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  display: none;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 
+           max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(2px);
 }
 
 .letter-window {
-    width: min(90vw, 800px);
-    min-height: min(60vh, 520px);
-    aspect-ratio: 3/2;
-    padding: 20px 16px 16px;
-    padding-top: clamp(100px, 22vw, 180px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-image: url("window.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 12px;
-    gap: 2px;
-    flex-shrink: 0;
-
-    transform: scale(1.2);
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
+  width: min(92vw, 800px);
+  max-width: 800px;
+  aspect-ratio: 3 / 2;
+  padding: clamp(100px, 22vw, 180px) 16px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("window.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+  border-radius: 12px;
+  gap: 8px;
+  flex-shrink: 0;
+  transform: scale(1.1);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              opacity 0.6s ease;
 }
 
 .letter-window.open {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 
 h1 {
-    font-size: clamp(18px, 4.5vw, 30px);
-    margin: 0;
-    line-height: 1.2;
-    padding: 0 8px;
+  font-size: clamp(20px, 4.8vw, 32px);
+  margin: 0;
+  line-height: 1.25;
+  padding: 0 12px;
+  color: #333;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
 }
 
 .letter-window p {
-    font-size: clamp(18px, 4vw, 40px);
+  font-size: clamp(18px, 4.2vw, 36px);
+  margin: 0;
+  color: #222;
 }
 
-/* Cat */
 .cat {
-    width: min(250px, 55vw);
-    max-width: 250px;
-    margin: 8px 0;
-    transition: width 0.4s ease;
+  width: min(240px, 52vw);
+  max-width: 250px;
+  margin: 12px 0;
+  transition: width 0.4s ease;
 }
 
 .letter-window.final .cat {
-    width: min(180px, 45vw);
-    max-width: 180px;
+  width: min(160px, 40vw);
+  max-width: 180px;
 }
 
 /* Buttons */
 .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(16px, 4vw, 30px);
-    position: relative;
-    flex-wrap: wrap;
-    padding: 8px 0;
-}
-
-.no-wrapper {
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(18px, 5vw, 32px);
+  position: relative;
+  flex-wrap: wrap;
+  padding: 12px 0;
 }
 
 .btn {
-    width: clamp(90px, 28vw, 120px);
-    min-width: 88px;
-    cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.yes-btn,
-.no-btn {
-    width: clamp(90px, 28vw, 120px);
-    min-width: 88px;
-    height: auto;
-    display: inline-block;
+  width: clamp(90px, 26vw, 120px);
+  min-width: 88px;
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
 }
 
 .yes-btn {
-    position: relative;
-    z-index: 2;
-    transform-origin: center center;
-    transition: transform 0.3s ease;
+  z-index: 2;
+  position: relative;
 }
 
 .no-btn {
-    z-index: 1;
-    position: relative;
-    transition: transform 0.15s ease;
-    cursor: default;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: none; /* We control movement via JS */
 }
 
 .final-text {
-    font-size: clamp(14px, 3.5vw, 22px);
-    line-height: 1.4;
-    text-align: center;
-    display: inline-block;
-    padding: clamp(8px, 2vw, 10px) clamp(12px, 4vw, 20px);
-    margin: 0 8px;
-    background-color: rgba(255, 240, 240, 0.5);
-    border-radius: 12px;
+  font-size: clamp(14px, 3.6vw, 22px);
+  line-height: 1.4;
+  text-align: center;
+  display: inline-block;
+  padding: clamp(10px, 2.5vw, 14px) clamp(16px, 5vw, 24px);
+  margin: 12px 8px 0;
+  background-color: rgba(255, 240, 245, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
 }
 
-/* Mobile: breathing room and spacing */
-@media (max-width: 600px) {
-    #letter-container {
-        padding: max(20px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
-    }
-
-    #envelope {
-        width: 160px;
-    }
-
-    .letter-window {
-        width: 88vw;
-        max-width: 340px;
-        min-height: 0;
-        aspect-ratio: 3/2;
-        padding: 14px 12px 16px;
-        padding-top: clamp(72px, 18vw, 100px);
-        gap: 4px;
-        margin: 0;
-    }
-
-    .letter-window h1 {
-        font-size: clamp(16px, 4.2vw, 22px);
-    }
-
-    .letter-window.final .cat {
-        width: min(140px, 38vw);
-        max-width: 160px;
-        margin: 4px 0;
-    }
-
-    .final-text {
-        margin-top: 12px;
-        margin-bottom: 8px;
-        font-size: clamp(13px, 3.2vw, 18px);
-        padding: 10px 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .letter-window {
-        width: 92vw;
-        max-width: 320px;
-        padding-top: clamp(64px, 16vw, 84px);
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .letter-window.final .cat {
-        width: min(120px, 35vw);
-        max-width: 140px;
-    }
-
-    .final-text {
-        margin-top: 14px;
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-}
-
-@media (max-width: 380px) {
-    #envelope {
-        width: 130px;
-    }
-
-    .letter-window {
-        width: 94vw;
-        max-width: 300px;
-        padding-top: 58px;
-    }
-
-    .letter-window.final .cat {
-        width: min(100px, 32vw);
-        max-width: 120px;
-    }
-
-    .buttons {
-        gap: 10px;
-    }
-
-    .btn,
-    .yes-btn,
-    .no-btn {
-        min-width: 76px;
-    }
-
-    .final-text {
-        font-size: 11px;
-        margin-top: 10px;
-        padding: 8px 10px;
-    }
+/* Mobile-first enhancements */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch devices: prevent accidental hover on "No" */
+  .no-btn {
+    pointer-events: none;
+  }
 }
