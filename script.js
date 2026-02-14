@@ -60,9 +60,13 @@ noBtn.addEventListener("mouseover", () => {
 // YES is clicked
 
 yesBtn.addEventListener("click", () => {
-    title.textContent = "Yippeeee!";
+    title.textContent = "Sikeeee!";
 
-    catImg.src = "cat_dance.gif";
+    catImg.src = "laughing-cat.gif";
+
+    // Play laughing cat sound
+    const laughSound = new Audio("cat-laugh-meme-1.mp3");
+    laughSound.play();
 
     document.querySelector(".letter-window").classList.add("final");
 
