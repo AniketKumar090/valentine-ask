@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Bubbles Example</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Your existing content goes here -->
+  <!-- Envelope, letter window, etc. -->
+  
+  <!-- Floating Chat Bubbles Container -->
+  <div id="chat-bubbles-container">
+    <!-- Bubbles will be added here by JavaScript -->
+  </div>
+
+  <script>
+    // Array of sweet messages for the bubbles
+    const messages = [
+      "Haq se single 😎",
+      "Pyaar vyaar dhoka hai 💔",
+      "Self love > Fake love 👑",
+      "Maa ka favourite hoon 😎",
+      "Akele mast 🕺",
+      "No tension, full pension 🤑",
+      "Apna time aayega... kabhi nahi 😂",
+      "Single by choice 🎯, not my tho",
+      "Pyaar? Nah, Pizza! 🍕",
+      "Commitment issues pro max 📱",
+      "Mera crush? Biryani 🍛",
+      "Heartbreak se bachgaye 🏃",
+      "Love is temporary, memes are forever 😹",
+      "Dil ka rishta? Block! 🚫",
+      "Self-partnered vibes ✨",
+      "Love? Already left on read 📱",
+      "Anti-romance squad 💪"
+    ];
+
+    // Function to create random chat bubbles
+    function createChatBubble() {
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble';
+      
+      // Random message from array
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      bubble.textContent = randomMessage;
+      
+      // Random horizontal starting position (0-100%)
+      const randomLeft = Math.random() * 100;
+      bubble.style.left = randomLeft + '%';
+      
+      // Add to container
+      const container = document.getElementById('chat-bubbles-container');
+      container.appendChild(bubble);
+      
+      // Remove bubble after animation completes (based on longest duration + delay)
+      setTimeout(() => {
+        bubble.remove();
+      }, 22000); // 17s max duration + 5s max delay
+    }
+
+    // Create initial bubbles
+    function initBubbles() {
+      // Create 6 bubbles with staggered timing
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          createChatBubble();
+        }, i * 500); // Stagger initial creation
+      }
+      
+      // Continuously create new bubbles
+      setInterval(() => {
+        createChatBubble();
+      }, 3000); // New bubble every 3 seconds
+    }
+
+    // Start bubbles when page loads
+    window.addEventListener('load', () => {
+      setTimeout(initBubbles, 1000); // Start after 1 second
+    });
+  </script>
+
+</body>
+</html>
