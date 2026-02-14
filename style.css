@@ -46,6 +46,16 @@ body {
   }
 }
 
+/* Mobile portrait: taller window so it fills the screen (phones are portrait, laptops landscape) */
+@media (max-width: 768px) and (orientation: portrait) {
+  .letter-window {
+    min-height: 72vh;
+    min-height: 72dvh;
+    aspect-ratio: 2 / 3;   /* portrait-friendly: taller than wide */
+    width: min(94vw, 380px);
+  }
+}
+
 /* ----- ENVELOPE (start screen) – same on all sizes ----- */
 #envelope-container {
   text-align: center;
@@ -320,19 +330,21 @@ h1 {
 
 /* ===== DETAILED MEDIA QUERIES FOR ZOOMED WINDOW ===== */
 
-/* Extra small devices (≤400px) – maximum zoom to show LOVE details */
+/* Extra small devices (≤400px) portrait – taller window, fills mobile screen */
 @media (max-width: 400px) and (orientation: portrait) {
   #envelope {
     width: min(150px, 50vw);
   }
   
   .letter-window {
-    width: 94vw;
+    width: 96vw;
     min-width: 280px;
-    aspect-ratio: 2 / 3;  /* Portrait - TALLER */
-    padding-top: clamp(85px, 22vw, 110px);
-    padding-left: 16px;
-    padding-right: 16px;
+    min-height: 75vh;
+    min-height: 75dvh;
+    aspect-ratio: 2 / 3;
+    padding-top: clamp(80px, 20vw, 105px);
+    padding-left: 14px;
+    padding-right: 14px;
   }
   
   h1 {
@@ -355,13 +367,16 @@ h1 {
   }
 }
 
-/* Small phones (380px and below) – extra zoom */
+/* Small phones (380px and below) portrait – maximum height for small screens */
 @media (max-width: 380px) and (orientation: portrait) {
   .letter-window {
-    aspect-ratio: 2 / 3;  /* Portrait - TALLER */
-    padding-top: clamp(75px, 20vw, 95px);
-    padding-left: 14px;
-    padding-right: 14px;
+    min-height: 78vh;
+    min-height: 78dvh;
+    aspect-ratio: 2 / 3;
+    width: 97vw;
+    padding-top: clamp(70px, 18vw, 90px);
+    padding-left: 12px;
+    padding-right: 12px;
   }
   
   h1 {
